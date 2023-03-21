@@ -1,0 +1,10 @@
+@import "./variables.scss";
+
+.header {
+  @apply border-b border-neutral-300;
+}
+.dark-theme {
+  .header {
+    @apply border-b border-neutral-800;
+  }
+}

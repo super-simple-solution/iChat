@@ -1,16 +1,18 @@
 import { Outlet } from 'react-router-dom'
-import ChangeMode from './component/changeMode'
+import Header from './component/Header'
+import Nav from './component/Nav';
 
 
 export default function AppLayout() {
   return (
     <>
       <div >
-        <div>
-          <ChangeMode />
-        </div>
-        <div className="main-container p-24">
-          <Outlet />
+        <Header />
+        <div className="main-container p-24 flex">
+          <Nav></Nav>
+          <div>
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

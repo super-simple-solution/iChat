@@ -1,0 +1,16 @@
+.nav {
+  width: 250px;
+  .chat-type {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 0 0 10px;
+  }
+  .type-item {
+    @apply flex justify-between items-center bg-red-400;
+    padding:  10px 0px;
+  }
+  .item-text {
+    width: 100px;
+    @apply truncate;
+  }
+}
