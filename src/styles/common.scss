@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./variables.scss";
+
+@layer components {
+  // flex
+  .flex-xy-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-y-center {
+    @apply flex items-center;
+  }
+  .flex-x-center {
+    @apply flex justify-center;
+  }
+  .flex-x-between {
+    @apply flex justify-between;
+  }
+
+  // text
+  .text-xs-normal { // 12
+    @apply text-xs font-normal;
+  }
+  .text-xs-medium {
+    @apply text-xs font-medium;
+  }
+  .text-sm-normal { // 14
+    @apply text-sm font-normal;
+  }
+  .text-sm-medium {
+    @apply text-sm font-medium;
+  }
+  .text-base-normal { // 16
+    @apply text-base font-normal;
+  }
+  .text-base-medium { 
+    @apply text-base font-medium;
+  }
+  .text-base-semibold { 
+    @apply text-base font-semibold;
+  }
+  .text-2xl-normal { // 24
+    @apply text-2xl font-normal;
+  }
+  .text-2xl-medium {
+    @apply text-2xl font-medium;
+  }
+  .number-4xl { // 36
+    @apply text-4xl font-bold font-number;
+  }
+  .number-2xl {
+    @apply text-2xl font-bold font-number;
+  }
+  .number-lg {
+    @apply text-lg font-bold;
+  }
+
+  // btn 
+  .bg-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-primary-600; 
+  }
+}
