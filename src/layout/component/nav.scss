@@ -6,10 +6,10 @@
     padding: 0 0 0 10px;
   }
   .type-list {
-    @apply bg-black bg-opacity-80;
+    // @apply bg-neutral-700 bg-opacity-80;
   }
   .type-item {
-    @apply flex justify-between items-center text-lg font-semibold rounded-3xl  cursor-pointer text-white  hover:bg-black hover:bg-opacity-100;
+    @apply flex justify-between items-center text-lg font-semibold rounded-3xl  cursor-pointer text-white  hover:bg-blue hover:bg-opacity-100;
     padding:  10px 20px;
   }
   .item-text {

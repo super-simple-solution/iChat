@@ -1,4 +1,5 @@
 import { Image } from '@chakra-ui/react'
+import { toPascal } from '@/utils'
 import './nav.scss'
 
 const list = [
@@ -34,7 +35,7 @@ function Nav() {
             <div className="type-item" key={index}>
               <div className="flex-x-center items-center">
                 <Image boxSize="20px" className="mr-2" src={`/src/assets/svg/${item.icon}.svg`} alt={item.lable} />
-                <span>{item.lable}</span>
+                <span>{toPascal(item.lable)}</span>
               </div>
             </div>
           ))}

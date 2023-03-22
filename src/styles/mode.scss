@@ -3,8 +3,14 @@
 .header {
   @apply border-b border-neutral-300;
 }
+.nav {
+  @apply bg-neutral-700;
+}
 .dark-theme {
   .header {
     @apply border-b border-neutral-800;
+  }
+  .nav {
+    @apply bg-neutral-200;
   }
 }

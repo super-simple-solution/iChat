@@ -56,6 +56,13 @@
     @apply text-lg font-bold;
   }
 
+  .title {
+    @apply text-lg font-bold;
+  }
+  .info {
+    @apply text-neutral-600;
+  }
+
   // btn 
   .bg-gradient {
     @apply bg-gradient-to-r from-red to-yellow; 
