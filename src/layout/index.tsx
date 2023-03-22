@@ -11,7 +11,7 @@ export default function AppLayout() {
         <Header />
         <div className="main-container flex p-24">
           <Nav></Nav>
-          <div>
+          <div className="main-content w-full p-24">
             <Outlet />
           </div>
         </div>

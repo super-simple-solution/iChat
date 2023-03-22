@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        yellow: { DEFAULT: 'var(--color-yellow)' },
+        red: { DEFAULT: '#be002f' },
+        yellow: { DEFAULT: '#f2be45' },
         purple: { DEFAULT: 'var(--color-purple)' },
         primary: {
           400: 'var(--color-primary-400)',

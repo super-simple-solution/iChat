@@ -6,11 +6,10 @@
     padding: 0 0 0 10px;
   }
   .type-item {
-    @apply flex justify-between items-center bg-red-400;
-    padding:  10px 0px;
+    @apply flex justify-between items-center bg-gradient-to-r from-red to-yellow  rounded-3xl  cursor-pointer text-white; 
+    padding:  10px;
   }
   .item-text {
-    width: 100px;
     @apply truncate;
   }
 }
