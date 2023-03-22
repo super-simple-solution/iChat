@@ -1,18 +1,10 @@
+import { Button } from '@chakra-ui/react'
+import { useColorMode } from '@chakra-ui/color-mode'
 
-import { useTheme as useNextTheme } from 'next-themes'
-import { Switch, useTheme } from '@nextui-org/react'
-function changeMode () {
-  const { setTheme } = useNextTheme()
-  const { isDark, type } = useTheme()
+function changeMode() {
+  const { colorMode, toggleColorMode } = useColorMode()
 
-  return (
-    <div>
-      <Switch
-        checked={isDark}
-        onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
-      />
-    </div>
-  )
+  return <Button onClick={toggleColorMode}>Toggle {colorMode === 'light' ? 'Dark' : 'Light'}</Button>
 }
 
 export default changeMode
