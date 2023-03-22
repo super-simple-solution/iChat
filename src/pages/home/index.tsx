@@ -12,7 +12,7 @@ function Home() {
         <InputGroup size="lg">
           <Input variant="unstyled" pr="4.5rem" type="text" placeholder="Ask me anything..." />
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
+            <Button colorScheme="twitter" size="lg " onClick={handleClick}>
               Send
             </Button>
           </InputRightElement>
