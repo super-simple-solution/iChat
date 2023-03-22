@@ -5,9 +5,12 @@
     line-height: 60px;
     padding: 0 0 0 10px;
   }
+  .type-list {
+    @apply bg-black bg-opacity-80;
+  }
   .type-item {
-    @apply flex justify-between items-center bg-gradient-to-r from-red to-yellow  rounded-3xl  cursor-pointer text-white; 
-    padding:  10px;
+    @apply flex justify-between items-center text-lg font-semibold rounded-3xl  cursor-pointer text-white  hover:bg-black hover:bg-opacity-100;
+    padding:  10px 20px;
   }
   .item-text {
     @apply truncate;

@@ -4,12 +4,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        red: { DEFAULT: '#be002f' },
-        yellow: { DEFAULT: '#f2be45' },
+        red: { DEFAULT: 'var(--color-red)' },
+        yellow: { DEFAULT: 'var(--color-yellow)' },
+        blue: { DEFAULT: 'var(--color-blue)' },
+        green: { DEFAULT: 'var(--color-green)' },
+        orange: { DEFAULT: 'var(--color-orange)' },
+        grey: { DEFAULT: 'var(--color-grey)' },
         purple: { DEFAULT: 'var(--color-purple)' },
         primary: {
           400: 'var(--color-primary-400)',
           500: 'var(--color-primary-500)',
+          DEFAULT: 'var(--color-primary-500)',
           600: 'var(--color-primary-600)',
           700: 'var(--color-primary-700)',
         },
