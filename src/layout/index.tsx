@@ -13,9 +13,9 @@ export default function AppLayout() {
   return (
     <>
       <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
-        <div className="h-screen">
+        <div className={`h-screen w-screen overflow-hidden ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
           <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-          <div className="main-container flex h-[calc(100vh_-_82px)] p-24">
+          <div className="main-container flex h-[calc(100vh_-_69px)]">
             <Nav></Nav>
             <div className="main-content w-full p-24">
               <Outlet />

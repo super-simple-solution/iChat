@@ -4,39 +4,29 @@ import './nav.scss'
 
 const list = [
   {
-    icon: 'canada',
-    lable: 'canada',
-    active: true,
+    icon: 'chatgpt',
+    select: true,
   },
   {
-    icon: 'draw',
-    lable: 'draw',
+    icon: 'bing',
   },
   {
-    icon: 'home',
-    lable: 'home',
-  },
-  {
-    icon: 'hot',
-    lable: 'hot',
-  },
-  {
-    icon: 'translate',
-    lable: 'translate',
+    icon: 'bard',
   },
 ]
 
 function Nav() {
   return (
     <>
-      <div className="nav">
-        <div className="chat-type">CHAT TYPE</div>
+      <div className="nav p-3">
+        <div className="mb-5 text-xl">Getting Started</div>
         <div className="type-list">
           {list.map((item, index) => (
-            <div className="type-item" key={index}>
+            <div className={`type-item ${item.select ? 'select' : ''}`} key={index}>
               <div className="flex-x-center items-center">
-                <Image className="mr-2 w-20" src={`/src/assets/svg/${item.icon}.svg`} alt={item.lable} />
-                <span>{toPascal(item.lable)}</span>
+                <div className={`mr-[20px] h-[20px] w-[2px] ${item.select ? 'bg-purple-600' : ''}`}></div>
+                <Image className="mr-3 w-20" src={`/src/assets/svg/${item.icon}-logo.svg`} alt={item.icon} />
+                <span>{toPascal(item.icon)}</span>
               </div>
             </div>
           ))}

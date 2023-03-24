@@ -4,13 +4,21 @@
   @apply border-b border-neutral-300;
 }
 .nav {
-  @apply bg-neutral-700;
+  @apply bg-neutral;
+  .type-item {
+    &:hover {
+      @apply bg-neutral-200
+    }
+  }
+  .select {
+    @apply bg-white;
+  }
 }
-.dark-theme {
+.dark-mode {
   .header {
     @apply border-b border-neutral-800;
   }
   .nav {
-    @apply bg-neutral-200;
+    @apply bg-black;
   }
 }

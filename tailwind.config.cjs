@@ -25,6 +25,7 @@ module.exports = {
           500: 'var(--color-neutral-500)',
           300: 'var(--color-neutral-300)',
           200: 'var(--color-neutral-200)',
+          DEFAULT: 'var(--color-neutral-DEFAULT)',
         },
       },
       fontSize: {

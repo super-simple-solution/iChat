@@ -1,16 +1,12 @@
 .nav {
-  width: 250px;
-  .chat-type {
-    height: 60px;
-    line-height: 60px;
-    padding: 0 0 0 10px;
-  }
+  width:  400px;
   .type-list {
     // @apply bg-neutral-700 bg-opacity-80;
   }
   .type-item {
-    @apply flex justify-between items-center text-lg font-semibold rounded-3xl  cursor-pointer text-white  hover:bg-blue hover:bg-opacity-100;
-    padding:  10px 20px;
+    @apply flex justify-between items-center text-lg   cursor-pointer  rounded-xl;
+    padding: 10px 10px 10px 5px;
+    margin-bottom: 10px;
   }
   .item-text {
     @apply truncate;
