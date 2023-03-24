@@ -1,21 +1,28 @@
-import { useColorMode } from '@chakra-ui/color-mode'
 import { Outlet } from 'react-router-dom'
 import Header from './component/Header'
 import Nav from './component/Nav'
+import { FluentProvider, webDarkTheme, webLightTheme } from '@fluentui/react-components'
+import { useState } from 'react'
 
 export default function AppLayout() {
-  const { colorMode } = useColorMode()
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode)
+  }
   return (
     <>
-      <div className="h-screen" data-theme={colorMode}>
-        <Header />
-        <div className="main-container flex h-[calc(100vh_-_82px)] p-24">
-          <Nav></Nav>
-          <div className="main-content w-full p-24">
-            <Outlet />
+      <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
+        <div className="h-screen">
+          <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+          <div className="main-container flex h-[calc(100vh_-_82px)] p-24">
+            <Nav></Nav>
+            <div className="main-content w-full p-24">
+              <Outlet />
+            </div>
           </div>
         </div>
-      </div>
+      </FluentProvider>
     </>
   )
 }

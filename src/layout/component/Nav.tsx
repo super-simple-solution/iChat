@@ -1,4 +1,4 @@
-import { Image } from '@chakra-ui/react'
+import { Image } from '@fluentui/react-components'
 import { toPascal } from '@/utils'
 import './nav.scss'
 
@@ -34,7 +34,7 @@ function Nav() {
           {list.map((item, index) => (
             <div className="type-item" key={index}>
               <div className="flex-x-center items-center">
-                <Image boxSize="20px" className="mr-2" src={`/src/assets/svg/${item.icon}.svg`} alt={item.lable} />
+                <Image className="mr-2 w-20" src={`/src/assets/svg/${item.icon}.svg`} alt={item.lable} />
                 <span>{toPascal(item.lable)}</span>
               </div>
             </div>
