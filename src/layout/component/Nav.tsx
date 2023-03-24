@@ -6,6 +6,7 @@ const list = [
   {
     icon: 'canada',
     lable: 'canada',
+    active: true,
   },
   {
     icon: 'draw',

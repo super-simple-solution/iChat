@@ -7,7 +7,7 @@ function Header(props: { toggleTheme: MouseEventHandler<HTMLButtonElement> | und
     <>
       <div>
         <div className="header flex-x-between items-center px-24 py-20 text-lg">
-          <div className="flex items-center">
+          <div className={'flex cursor-pointer items-center border-b-[4px] border-red pb-14'}>
             <Image className="mr-2 h-20" src={'/src/assets/svg/chatgpt-logo.svg'} alt="chatgpt" />
             {toPascal('ChatGPT')}
           </div>
