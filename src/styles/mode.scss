@@ -3,7 +3,7 @@
 .header {
   @apply border-b border-neutral-300;
 }
-.nav {
+.nav, .message-content {
   @apply bg-neutral;
   .type-item {
     &:hover {
@@ -18,7 +18,7 @@
   .header {
     @apply border-b border-neutral-800;
   }
-  .nav {
+  .nav, .message-content {
     @apply bg-black;
     .type-item {
       &:hover {
