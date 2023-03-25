@@ -9,7 +9,11 @@ import {
   WeatherSunny24Regular,
 } from '@fluentui/react-icons'
 
-function Header(props: { toggleTheme: MouseEventHandler<HTMLButtonElement> | undefined; isDarkMode: boolean }) {
+function Header(props: {
+  toggleTheme: MouseEventHandler<HTMLButtonElement> | undefined
+  isDarkMode: boolean
+  curProduct: string
+}) {
   return (
     <>
       <div>
@@ -34,6 +38,7 @@ function Header(props: { toggleTheme: MouseEventHandler<HTMLButtonElement> | und
           {/* Toggle {props.isDarkMode ? 'light' : 'dark'}
           </Button> */}
           <div>SSS</div>
+          <div>{props.curProduct}</div>
           {props.isDarkMode ? (
             <span onClick={props.toggleTheme} className="cursor-pointer">
               <WeatherSunny24Regular />
