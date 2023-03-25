@@ -10,17 +10,17 @@ interface MessageItem {
 
 function Home() {
   const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState<MessageItem[]>([])
-  const handleChange = (data: InputOnChangeData) => {
-    setMessage(data.value)
-  }
+  const handleChange = (data: InputOnChangeData) => setMessage(data.value)
+
+  const [messageList, setMessageList] = useState<MessageItem[]>([])
   const handleSendMessage = () => {
-    setMessages([
-      ...messages,
+    setMessageList([
+      ...messageList,
       {
         content: message,
         from: 'me',
       },
+      // 假数据
       {
         content: '333',
         from: 'other',
@@ -35,8 +35,8 @@ function Home() {
             <div className="mb-24 border-b-[1px] border-neutral-600 pb-24 text-center text-lg font-semibold">
               ChatGPT
             </div>
-            <div className=" ">
-              {messages.map((item, index) => (
+            <div>
+              {messageList.map((item, index) => (
                 <div key={index} className={`mb-3  flex ${item.from === 'me' ? 'justify-end' : ''}`}>
                   <div className="type-item select  inline-block rounded-lg py-1 px-2">{item.content}</div>
                 </div>
