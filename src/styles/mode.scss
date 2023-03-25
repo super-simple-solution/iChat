@@ -20,5 +20,13 @@
   }
   .nav {
     @apply bg-black;
+    .type-item {
+      &:hover {
+        background-color: #999999;
+      }
+    }
+    .select {
+      background-color: #3D3D3D;
+    }
   }
 }
