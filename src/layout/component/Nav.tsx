@@ -2,33 +2,16 @@ import { Image } from '@fluentui/react-components'
 import { toPascal } from '@utils'
 import './nav.scss'
 import { useState } from 'react'
+import { Product } from '@types'
 
-const list = [
-  {
-    icon: 'chatgpt',
-    name: 'chatgpt',
-    select: true,
-  },
-  {
-    icon: 'bing',
-    select: false,
-  },
-  {
-    icon: 'bard',
-    select: false,
-  },
-]
-
-function Nav(props: { selectProduct: (arg0: string) => void }) {
-  const [productList, setProductList] = useState(list)
-  const handleChange = (item: { icon: any; select?: boolean }) => {
-    const updatedProductList = productList.map((product) => ({
-      icon: product.icon,
-      select: product.icon === item.icon ? true : false,
-    }))
-    setProductList(updatedProductList)
-    const curProduct = updatedProductList.find((product) => product.select)?.icon || 'chatgpt'
-    props.selectProduct(curProduct)
+function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => void }) {
+  const [productList, setProductList] = useState(props.productList)
+  const handleChange = (item: { icon: string; name: string; selected: boolean }) => {
+    productList.forEach((product: Product) => {
+      product.selected = product.name === item.name ? true : false
+    })
+    setProductList(productList)
+    props.selectProduct(item.name)
   }
   return (
     <>
@@ -36,9 +19,13 @@ function Nav(props: { selectProduct: (arg0: string) => void }) {
         <div className="mb-5 text-xl">Getting Started</div>
         <div className="type-list">
           {productList.map((item, index) => (
-            <div className={`type-item ${item.select ? 'select' : ''}`} key={index} onClick={() => handleChange(item)}>
+            <div
+              className={`type-item ${item.selected ? 'select' : ''}`}
+              key={index}
+              onClick={() => handleChange(item)}
+            >
               <div className="flex-x-center items-center">
-                <div className={`mr-[20px] h-[20px] w-[2px] ${item.select ? 'bg-purple-600' : ''}`}></div>
+                <div className={`mr-[20px] h-[20px] w-[2px] ${item.selected ? 'bg-purple-600' : ''}`}></div>
                 <Image className="mr-3 w-20" src={`/src/assets/svg/${item.icon}-logo.svg`} alt={item.icon} />
                 <span>{item.icon === 'chatgpt' ? 'ChatGPT' : toPascal(item.icon)}</span>
               </div>

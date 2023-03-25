@@ -2,13 +2,19 @@ import { Input, InputOnChangeData } from '@fluentui/react-components'
 
 import { Search24Filled, Send24Regular } from '@fluentui/react-icons'
 import { useState } from 'react'
+import { BotId } from '@bots'
 
 interface MessageItem {
   content: string
   from: string
 }
 
+interface Props {
+  botId: BotId
+}
+
 function Home() {
+  const chat = useChat(botId)
   const [message, setMessage] = useState('')
   const handleChange = (data: InputOnChangeData) => setMessage(data.value)
 
