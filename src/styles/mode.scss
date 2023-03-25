@@ -14,6 +14,20 @@
     @apply bg-white;
   }
 }
+
+/* 设置滚动条的宽度和颜色 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* 设置滚动条滑块的颜色和圆角 */
+::-webkit-scrollbar-thumb {
+  background-color:  var(--color-neutral-300);
+  height: 200px;
+  border-radius: 5px;
+}
+
 .dark-mode {
   .header {
     @apply border-b border-neutral-800;

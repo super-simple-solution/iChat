@@ -15,7 +15,7 @@ export default function AppLayout() {
           <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
           <div className="main-container flex h-[calc(100vh_-_69px)]">
             <Nav></Nav>
-            <div className="main-content w-full px-24">
+            <div className="main-content w-full">
               <Outlet />
             </div>
           </div>
