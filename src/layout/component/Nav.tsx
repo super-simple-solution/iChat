@@ -6,6 +6,7 @@ import { useState } from 'react'
 const list = [
   {
     icon: 'chatgpt',
+    name: 'chatgpt',
     select: true,
   },
   {
@@ -39,7 +40,7 @@ function Nav(props: { selectProduct: (arg0: string) => void }) {
               <div className="flex-x-center items-center">
                 <div className={`mr-[20px] h-[20px] w-[2px] ${item.select ? 'bg-purple-600' : ''}`}></div>
                 <Image className="mr-3 w-20" src={`/src/assets/svg/${item.icon}-logo.svg`} alt={item.icon} />
-                <span>{toPascal(item.icon)}</span>
+                <span>{item.icon === 'chatgpt' ? 'ChatGPT' : toPascal(item.icon)}</span>
               </div>
             </div>
           ))}

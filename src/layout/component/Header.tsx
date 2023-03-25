@@ -1,13 +1,6 @@
-import { Button, Image } from '@fluentui/react-components'
 import { toPascal } from '@/utils'
 import { MouseEventHandler } from 'react'
-
-import {
-  WeatherMoon24Filled,
-  WeatherMoon24Regular,
-  WeatherSunny24Filled,
-  WeatherSunny24Regular,
-} from '@fluentui/react-icons'
+import { WeatherMoon24Filled, WeatherSunny24Regular } from '@fluentui/react-icons'
 
 function Header(props: {
   toggleTheme: MouseEventHandler<HTMLButtonElement> | undefined
@@ -19,7 +12,7 @@ function Header(props: {
       <div>
         <div className="header flex items-center justify-between px-24 py-20 text-lg">
           <div>SSS</div>
-          <div>{props.curProduct}</div>
+          <div>{props.curProduct === 'chatgpt' ? 'ChatGPT' : toPascal(props.curProduct)}</div>
           {props.isDarkMode ? (
             <span onClick={props.toggleTheme} className="cursor-pointer">
               <WeatherSunny24Regular />
