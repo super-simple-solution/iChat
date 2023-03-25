@@ -1,7 +1,7 @@
-// import { getUserConfig } from '@/services/user_config'
-import { ChatError, ErrorCode } from '@/utils/errors'
+// import { getUserConfig } from '@services/user_config'
+import { ChatError, ErrorCode } from '@utils/errors'
 import { AbstractBot, MessageParams } from '../abstract_bot'
-import { CHATGPT_SYSTEM_MESSAGE, ConversationMessage } from '@/const/chatgpt'
+import { CHATGPT_SYSTEM_MESSAGE, ConversationMessage } from '@const/chatgpt'
 
 export const CHATGPT_API_MODELS = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-32k']
 // send request
@@ -11,7 +11,8 @@ export const CHATGPT_API_MODELS = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-32k']
 async function getUserConfig() {
   return {
     openaiApiKey: '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',
-    openaiApiHost: 'https://api.openai.com',
+    // openaiApiHost: 'https://api.openai.com',
+    openaiApiHost: '',
     chatgptApiModel: CHATGPT_API_MODELS[0],
   }
 }
@@ -88,8 +89,8 @@ export class ChatGPTApiBot extends AbstractBot {
 }
 
 import { createParser } from 'eventsource-parser'
-import { isEmpty } from '@/utils'
-import { streamAsyncIterable } from '@/utils/stream'
+import { isEmpty } from '@utils'
+import { streamAsyncIterable } from '@utils/stream'
 
 export async function parseStream(resp: Response, onMessage: (message: string) => void) {
   if (!resp.ok) {

@@ -1,5 +1,5 @@
 import { Image } from '@fluentui/react-components'
-import { toPascal } from '@/utils'
+import { toPascal } from '@utils'
 import './nav.scss'
 
 const list = [

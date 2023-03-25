@@ -1,5 +1,5 @@
 import { Button, Image } from '@fluentui/react-components'
-import { toPascal } from '@/utils'
+import { toPascal } from '@utils'
 import { MouseEventHandler } from 'react'
 
 import {
