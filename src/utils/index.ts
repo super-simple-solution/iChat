@@ -1,3 +1,5 @@
+import { v4 } from 'uuid'
+
 /**
  * abc => Abc
  * @param str
@@ -63,4 +65,8 @@ export function toCamelCase(str: string) {
 
 export function isEmpty(obj: any) {
   return [Object, Array].includes((obj || {}).constructor) && !Object.entries(obj || {}).length
+}
+
+export function uuid() {
+  return v4()
 }

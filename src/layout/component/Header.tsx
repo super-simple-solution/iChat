@@ -1,4 +1,4 @@
-import { toPascal } from '@/utils'
+import { toPascal } from '@utils'
 import { MouseEventHandler } from 'react'
 import { WeatherMoon24Filled, WeatherSunny24Regular } from '@fluentui/react-icons'
 

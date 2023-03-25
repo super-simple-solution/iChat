@@ -8,20 +8,20 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const mobile = process.env.TAURI_PLATFORM === 'android' || process.env.TAURI_PLATFORM === 'ios'
 
-const pathUrl = 'https://xxx.com'
+const pathUrl = 'https://opapi.openai.com'
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  resolve: {
-    alias: {
-      '@/': `${path.resolve(__dirname, './src')}/`,
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     '~': `${path.resolve(__dirname, './src')}/`,
+  //   },
+  // },
   server: {
     strictPort: true,
     port: 1420,
     host: true,
     proxy: {
-      '/api': {
+      '/chat': {
         target: pathUrl,
         changeOrigin: true,
         secure: false,

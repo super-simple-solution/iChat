@@ -1,4 +1,4 @@
-import { ChatError, ErrorCode } from '@/utils/errors'
+import { ChatError, ErrorCode } from '@utils/errors'
 
 export type Event =
   | {
