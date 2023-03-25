@@ -41,9 +41,8 @@ function Home() {
             {messageList.map((item, index) => (
               <div key={index} className={`mb-3  flex ${item.from === 'me' ? 'justify-end' : ''}`}>
                 <div
-                  className={`inline-block rounded-lg py-1 px-2 ${
-                    item.from === 'me' ? 'bg-purple-200' : 'type-item select'
-                  }`}
+                  className={`inline-block rounded-lg py-1 px-2 
+                  ${item.from === 'me' ? 'bg-purple-200' : 'type-item select'}`}
                 >
                   {item.content}
                 </div>
