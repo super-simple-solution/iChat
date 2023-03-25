@@ -60,3 +60,7 @@ export function loadScript(url: string, async = false) {
 export function toCamelCase(str: string) {
   return str.replace(/_/g, ' ').replace(/\b\w/g, (match) => match.toUpperCase())
 }
+
+export function isEmpty(obj: any) {
+  return [Object, Array].includes((obj || {}).constructor) && !Object.entries(obj || {}).length
+}
