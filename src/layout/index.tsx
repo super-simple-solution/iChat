@@ -8,14 +8,19 @@ export default function AppLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false)
   const toggleTheme = () => setIsDarkMode(!isDarkMode)
 
+  const [curProduct, setProduct] = useState('chatgpt')
+  const handleSelectProduct = (value: string) => {
+    setProduct(value)
+  }
+
   return (
     <>
       <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
         <div className={`h-screen w-screen overflow-hidden ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-          <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+          <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} curProduct={curProduct} />
           <div className="main-container flex h-[calc(100vh_-_69px)]">
-            <Nav></Nav>
-            <div className="main-content w-full px-24">
+            <Nav selectProduct={handleSelectProduct}></Nav>
+            <div className="main-content w-full">
               <Outlet />
             </div>
           </div>

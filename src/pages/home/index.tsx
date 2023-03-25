@@ -29,31 +29,32 @@ function Home() {
   }
   return (
     <>
-      <div className="h-full py-24">
-        <div className="flex h-full flex-col justify-between">
-          <div className="message-content h-full w-full rounded-3xl  p-24">
-            <div className="mb-24 border-b-[1px] border-neutral-600 pb-24 text-center text-lg font-semibold">
-              ChatGPT
-            </div>
-            <div>
-              {messageList.map((item, index) => (
-                <div key={index} className={`mb-3  flex ${item.from === 'me' ? 'justify-end' : ''}`}>
-                  <div className="type-item select  inline-block rounded-lg py-1 px-2">{item.content}</div>
+      <div className="flex h-full flex-col justify-between border-l-[1px] border-neutral-400">
+        <div className="message-content h-full w-full overflow-hidden ">
+          <div className="h-[calc(100vh_-_69px)] overflow-hidden overflow-y-scroll  p-20 pb-28">
+            {messageList.map((item, index) => (
+              <div key={index} className={`mb-3  flex ${item.from === 'me' ? 'justify-end' : ''}`}>
+                <div
+                  className={`inline-block rounded-lg py-1 px-2 ${
+                    item.from === 'me' ? 'bg-purple-200' : 'type-item select'
+                  }`}
+                >
+                  {item.content}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-          <div className="mt-24 flex items-center justify-between">
-            <Search24Filled className="cursor-pointer" />
-            <Input
-              value={message}
-              className="flex-auto"
-              onChange={(event, value) => handleChange(value)}
-              appearance="underline"
-              placeholder="Ask me anything..."
-            />
-            <Send24Regular className="cursor-pointer" onClick={handleSendMessage} />
-          </div>
+        </div>
+        <div className="mt-24 flex items-center justify-between">
+          <Search24Filled className="cursor-pointer" />
+          <Input
+            value={message}
+            className="flex-auto"
+            onChange={(event, value) => handleChange(value)}
+            appearance="underline"
+            placeholder="Ask me anything..."
+          />
+          <Send24Regular className="cursor-pointer" onClick={handleSendMessage} />
         </div>
       </div>
     </>
