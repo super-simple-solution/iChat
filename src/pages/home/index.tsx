@@ -1,19 +1,7 @@
-import { Input, InputProps } from '@fluentui/react-components'
+import { Input } from '@fluentui/react-components'
 
 import { Search24Filled, Send24Regular } from '@fluentui/react-icons'
-import { useState } from 'react'
 function Home() {
-  const [inputValue, setInputValue] = useState('')
-
-  const onChange: InputProps['onChange'] = (ev, data) => {
-    if (data.value.length <= 20) {
-      setInputValue(data.value)
-    }
-  }
-
-  const toSend = () => {
-    console.log(12, inputValue)
-  }
   return (
     <>
       <div className="h-full py-24">
@@ -22,20 +10,11 @@ function Home() {
             <div className="mb-24 border-b-[1px] border-neutral-600 pb-24 text-center text-lg font-semibold">
               ChatGPT
             </div>
-            <div className="ask-list">
-              <div>{inputValue}</div>
-            </div>
           </div>
           <div className="mt-24 flex items-center justify-between">
             <Search24Filled className="cursor-pointer" />
-            <Input
-              value={inputValue}
-              onChange={onChange}
-              className="flex-auto"
-              appearance="underline"
-              placeholder="Ask me anything..."
-            />
-            <Send24Regular className="cursor-pointer" onClick={toSend} />
+            <Input className="flex-auto" appearance="underline" placeholder="Ask me anything..." />
+            <Send24Regular className="cursor-pointer" />
           </div>
         </div>
       </div>
