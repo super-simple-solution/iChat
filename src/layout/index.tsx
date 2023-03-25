@@ -6,10 +6,8 @@ import { useState } from 'react'
 
 export default function AppLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const toggleTheme = () => setIsDarkMode(!isDarkMode)
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode)
-  }
   return (
     <>
       <FluentProvider theme={isDarkMode ? webDarkTheme : webLightTheme}>
@@ -17,7 +15,7 @@ export default function AppLayout() {
           <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
           <div className="main-container flex h-[calc(100vh_-_69px)]">
             <Nav></Nav>
-            <div className="main-content w-full p-24">
+            <div className="main-content w-full px-24">
               <Outlet />
             </div>
           </div>
