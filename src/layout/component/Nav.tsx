@@ -16,7 +16,6 @@ function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => v
   return (
     <>
       <div className="nav p-3">
-        <div className="mb-5 text-xl">Getting Started</div>
         <div className="type-list">
           {productList.map((item, index) => (
             <div

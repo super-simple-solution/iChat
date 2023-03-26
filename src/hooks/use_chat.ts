@@ -4,10 +4,10 @@ import { chatFamily } from '@state'
 import { setConversationMessages } from '@services/chat-history'
 import { ChatMessageModel } from '@types'
 import { uuid } from '@utils'
-import { BotId } from '../bots'
+import { BotId } from '@bots'
 
-export function useChat(botId: BotId, page = 'singleton') {
-  const chatAtom = useMemo(() => chatFamily({ botId, page }), [botId, page])
+export function useChat(botId: BotId) {
+  const chatAtom = useMemo(() => chatFamily({ botId }), [botId])
   const [chatState, setChatState] = useAtom(chatAtom)
 
   const updateMessage = useCallback(

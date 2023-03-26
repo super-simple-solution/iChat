@@ -14,26 +14,26 @@ interface Conversation {
 
 type ConversationWithMessages = Conversation & { messages: ChatMessageModel[] }
 
-async function loadHistoryConversations(botId: BotId): Promise<Conversation[]> {
+function loadHistoryConversations(botId: BotId): Conversation[] {
   const key = `conversations:${botId}`
-  const { [key]: value } = localStorage.get(key)
-  return value || []
+  const value = localStorage.getItem(key)
+  return value && value[0] === '[' ? JSON.parse(value) : []
 }
 
-async function loadConversationMessages(botId: BotId, cid: string): Promise<ChatMessageModel[]> {
+function loadConversationMessages(botId: BotId, cid: string): ChatMessageModel[] {
   const key = `conversation:${botId}:${cid}:messages`
-  const { [key]: value } = localStorage.get(key)
-  return value || []
+  const value = localStorage.getItem(key)
+  return value && value[0] === '[' ? JSON.parse(value) : []
 }
 
 export async function setConversationMessages(botId: BotId, cid: string, messages: ChatMessageModel[]) {
   const conversations = await loadHistoryConversations(botId)
   if (!conversations.some((c) => c.id === cid)) {
     conversations.unshift({ id: cid, createdAt: Date.now() })
-    localStorage.set({ [`conversations:${botId}`]: conversations })
+    localStorage.setItem(`conversations:${botId}`, JSON.stringify(conversations))
   }
   const key = `conversation:${botId}:${cid}:messages`
-  localStorage.set({ [key]: messages })
+  localStorage.setItem(key, JSON.stringify(messages))
 }
 
 export async function loadHistoryMessages(botId: BotId): Promise<ConversationWithMessages[]> {

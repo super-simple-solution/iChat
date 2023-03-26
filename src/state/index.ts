@@ -1,24 +1,22 @@
 import { atomWithImmer } from 'jotai-immer'
-import { atomWithStorage } from 'jotai/utils'
 import { atomFamily } from 'jotai/utils'
 import { createBotInstance, BotId } from '@bots'
 import { ChatMessageModel } from '@types'
 import { uuid } from '@utils'
 
-type Param = { botId: BotId; page: string }
+type Param = { botId: BotId }
 
 export const chatFamily = atomFamily(
   (param: Param) => {
+    const botId = param.botId || 'chatgpt'
     return atomWithImmer({
-      botId: param.botId,
-      bot: createBotInstance(param.botId),
+      botId,
+      bot: createBotInstance(botId),
       messages: [] as ChatMessageModel[],
       generatingMessageId: '',
       abortController: undefined as AbortController | undefined,
       conversationId: uuid(),
     })
   },
-  (a, b) => a.botId === b.botId && a.page === b.page,
+  (a, b) => a.botId === b.botId,
 )
-
-export const compareBotsAtom = atomWithStorage<[BotId, BotId]>('compareBots', ['chatgpt', 'bing'])

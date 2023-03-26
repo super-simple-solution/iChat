@@ -9,10 +9,10 @@ export const CHATGPT_API_MODELS = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-32k']
 // set local response
 
 async function getUserConfig() {
+  const openaiApiKey = localStorage.getItem('openai_api_key')
   return {
-    openaiApiKey: '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',
-    // openaiApiHost: 'https://api.openai.com',
-    openaiApiHost: '',
+    openaiApiKey,
+    openaiApiHost: 'https://api.openai.com',
     chatgptApiModel: CHATGPT_API_MODELS[0],
   }
 }
