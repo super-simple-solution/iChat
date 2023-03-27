@@ -12,7 +12,7 @@ import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 import supersub from 'remark-supersub'
 import { Tooltip } from '@fluentui/react-components'
-import './markdown.css'
+import './markdown.scss'
 
 function CustomCode(props: { children: ReactNode; className?: string }) {
   const [copied, setCopied] = useState(false)

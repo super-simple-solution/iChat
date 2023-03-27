@@ -3,6 +3,7 @@ import { RouteObject } from 'react-router-dom'
 
 const Home = lazy(() => import('../pages/home'))
 const About = lazy(() => import('../pages/about'))
+const Config = lazy(() => import('../pages/config'))
 
 import AppLayout from '../layout/index'
 
@@ -22,6 +23,10 @@ export const routers: RouteObject[] = [
       {
         path: '/about',
         element: lazyLoad(<About />),
+      },
+      {
+        path: '/config',
+        element: lazyLoad(<Config />),
       },
     ],
   },

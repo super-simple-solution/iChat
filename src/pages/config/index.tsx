@@ -12,12 +12,21 @@ function Config() {
     localStorage.setItem('openai_api_key', apiKey || '')
     localStorage.setItem('openai_api_host', apiHost || '')
   }
+  // TODO: each bot with eath tab
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div>
           <Label htmlFor={keyId}>OpenAI API Key</Label>
           <Input value={apiKey} type="password" placeholder="sk-******" id={keyId} />
+        </div>
+        <div>
+          <Label htmlFor={hostId}>OpenAI API Host</Label>
+          <Input type="url" id={hostId} />
+        </div>
+        <div>
+          <Label htmlFor={hostId}>OpenAI API Host</Label>
+          <Input type="url" id={hostId} />
         </div>
         <div>
           <Label htmlFor={hostId}>OpenAI API Host</Label>

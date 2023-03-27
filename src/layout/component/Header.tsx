@@ -1,13 +1,13 @@
 import { toPascal } from '@utils'
 import { MouseEventHandler } from 'react'
 import { WeatherMoon24Regular, WeatherSunny24Regular, Settings24Regular } from '@fluentui/react-icons'
+import { Link } from 'react-router-dom'
 
 function Header(props: {
   toggleTheme: MouseEventHandler<HTMLButtonElement> | undefined
   isDarkMode: boolean
   curProduct: string
 }) {
-  const toSetting = () => {}
   return (
     <>
       <div>
@@ -17,9 +17,9 @@ function Header(props: {
             {props.curProduct === 'chatgpt' ? 'ChatGPT' : toPascal(props.curProduct)}
           </div>
           <div>
-            <span onClick={toSetting} className="mr-2 cursor-pointer">
+            <Link to="/config" className="mr-2 cursor-pointer">
               <Settings24Regular />
-            </span>
+            </Link>
             <span onClick={props.toggleTheme} className="cursor-pointer">
               {props.isDarkMode ? <WeatherSunny24Regular /> : <WeatherMoon24Regular />}
             </span>

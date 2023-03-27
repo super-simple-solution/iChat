@@ -1,21 +1,7 @@
-// import { getUserConfig } from '@services/user_config'
+import { getUserConfig } from '@pages/config/util'
 import { ChatError, ErrorCode } from '@utils/errors'
 import { AbstractBot, MessageParams } from '../abstract_bot'
 import { CHATGPT_SYSTEM_MESSAGE, ConversationMessage } from '@const/chatgpt'
-
-export const CHATGPT_API_MODELS = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-32k']
-// send request
-// parse request
-// set local response
-
-async function getUserConfig() {
-  const openaiApiKey = localStorage.getItem('openai_api_key')
-  return {
-    openaiApiKey,
-    openaiApiHost: 'https://api.openai.com',
-    chatgptApiModel: CHATGPT_API_MODELS[0],
-  }
-}
 
 interface conversitionContext {
   messages: ConversationMessage[]
