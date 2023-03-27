@@ -1,34 +1,13 @@
 import { defaults } from 'lodash-es'
-import { CHATGPT_API_MODELS } from '@const'
+import { BotId } from '@bots'
 import { getLocalStorage, setLocalStorage } from '@utils/storage'
-const CONFIG_KEY = 'user_config'
+import { defaultConfig } from '@const'
 
-export enum StartupPage {
-  ChatGPT = 'chatgpt',
-  Bing = 'bing',
+export function getBotConfig(botId: BotId) {
+  const result = getLocalStorage(`${botId}_config`)
+  return defaults(result, defaultConfig[botId])
 }
 
-export enum BingConversationStyle {
-  Creative = 'creative',
-  Balanced = 'balanced',
-  Precise = 'precise',
-}
-
-const userConfigWithDefaultValue = {
-  openaiApiKey: '',
-  openaiApiHost: 'https://api.openai.com',
-  chatgptApiModel: CHATGPT_API_MODELS[0],
-  startupPage: StartupPage.ChatGPT,
-  bingConversationStyle: BingConversationStyle.Balanced,
-}
-
-export type UserConfig = typeof userConfigWithDefaultValue
-
-export function getUserConfig(): UserConfig {
-  const result = getLocalStorage(CONFIG_KEY)
-  return defaults(result, userConfigWithDefaultValue)
-}
-
-export function updateUserConfig(updates: Partial<UserConfig>) {
-  setLocalStorage(CONFIG_KEY, updates)
+export function updateBotConfig(botId: BotId, updates: object) {
+  setLocalStorage(`${botId}_config`, updates)
 }
