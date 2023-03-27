@@ -1,5 +1,8 @@
-import { Label, useId, Input, Button } from '@fluentui/react-components'
+import { Label, useId, Input, Button, Divider, Select, SelectProps } from '@fluentui/react-components'
+
+// import { makeStyles, tokens, Divider } from "@fluentui/react-components";
 import { useState } from 'react'
+import { CHATGPT_API_MODELS } from '@const'
 
 function Config() {
   const keyId = useId('api-key')
@@ -12,28 +15,63 @@ function Config() {
     localStorage.setItem('openai_api_key', apiKey || '')
     localStorage.setItem('openai_api_host', apiHost || '')
   }
-  // TODO: each bot with eath tab
+
+  const [form, setForm] = useState({
+    openai_mode: '',
+  })
+
+  const openAiModeChange: SelectProps['onChange'] = (event, data) => {
+    setForm({ ...form, openai_mode: data.value })
+  }
+  // TODO: each bot with each tab
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <Label htmlFor={keyId}>OpenAI API Key</Label>
-          <Input value={apiKey} type="password" placeholder="sk-******" id={keyId} />
-        </div>
-        <div>
-          <Label htmlFor={hostId}>OpenAI API Host</Label>
-          <Input type="url" id={hostId} />
-        </div>
-        <div>
-          <Label htmlFor={hostId}>OpenAI API Host</Label>
-          <Input type="url" id={hostId} />
-        </div>
-        <div>
-          <Label htmlFor={hostId}>OpenAI API Host</Label>
-          <Input type="url" id={hostId} />
-        </div>
-        <Button type="submit">Save</Button>
-      </form>
+      <div className="p-4">
+        <form onSubmit={handleSubmit}>
+          <Divider appearance="brand" className="mb-4">
+            ChatGPT
+          </Divider>
+          <div className="mb-3 flex items-center">
+            <Label className="mr-4 flex w-28 justify-end" htmlFor={keyId}>
+              API Key
+            </Label>
+            <Input className="flex-auto" value={apiKey} type="password" placeholder="sk-******" id={keyId} />
+          </div>
+          <div className="mb-3 flex items-center">
+            <Label className="mr-4 flex w-28 justify-end" htmlFor={hostId}>
+              API Host
+            </Label>
+            <Input className="flex-auto" type="url" id={hostId} />
+          </div>
+          <div className="mb-3 flex items-center">
+            <Label className="mr-4 flex w-28 justify-end" htmlFor={hostId}>
+              Model
+            </Label>
+            <Select className="flex-auto" onChange={openAiModeChange} value={form.openai_mode}>
+              {CHATGPT_API_MODELS.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </Select>
+          </div>
+          <Divider appearance="brand" className="mb-4">
+            Bing
+          </Divider>
+          <div className="mb-3 flex items-center">
+            <Label className="mr-4 flex w-28 justify-end" htmlFor={hostId}>
+              Style
+            </Label>
+            <Input className="flex-auto"></Input>
+          </div>
+          <Divider appearance="brand" className="mb-4">
+            Bard
+          </Divider>
+          <div className="flex-xy-center mt-7">
+            <Button appearance="primary">Save</Button>
+          </div>
+        </form>
+      </div>
     </>
   )
 }
