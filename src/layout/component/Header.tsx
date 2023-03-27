@@ -17,7 +17,7 @@ function Header(props: {
             {props.curProduct === 'chatgpt' ? 'ChatGPT' : toPascal(props.curProduct)}
           </div>
           <div>
-            <Link to="/config" className="mr-2 cursor-pointer">
+            <Link to="config" className="mr-2 cursor-pointer">
               <Settings24Regular />
             </Link>
             <span onClick={props.toggleTheme} className="cursor-pointer">

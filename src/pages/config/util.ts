@@ -1,13 +1,12 @@
 import { defaults } from 'lodash-es'
 import { BotId } from '@bots'
-import { getLocalStorage, setLocalStorage } from '@utils/storage'
+import { getLocalStorage } from '@utils/storage'
 import { defaultConfig } from '@const'
+import { USER_CONFIG_KEY } from './const'
 
 export function getBotConfig(botId: BotId) {
-  const result = getLocalStorage(`${botId}_config`)
-  return defaults(result, defaultConfig[botId])
-}
-
-export function updateBotConfig(botId: BotId, updates: object) {
-  setLocalStorage(`${botId}_config`, updates)
+  const result = getLocalStorage(USER_CONFIG_KEY)
+  if (result[botId]) {
+    return defaults(result[botId], defaultConfig[botId])
+  }
 }

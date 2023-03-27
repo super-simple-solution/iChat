@@ -26,6 +26,7 @@ export const routers: RouteObject[] = [
       },
       {
         path: '/config',
+        id: 'config',
         element: lazyLoad(<Config />),
       },
     ],

@@ -1,13 +1,15 @@
 import { Label, Input, Button, Divider, Select, SelectProps } from '@fluentui/react-components'
 import { useState, useEffect } from 'react'
 import { CHATGPT_API_MODELS } from '@const'
+import { getLocalStorage, setLocalStorage } from '@utils/storage'
+import { USER_CONFIG_KEY } from './const'
 
 function Config() {
   const [form, setForm] = useState({
-    openai: {
+    chatgpt: {
       key: '',
       host: 'https://api.openai.com',
-      mode: '',
+      model: CHATGPT_API_MODELS[0],
     },
     bing: {
       style: '',
@@ -15,26 +17,24 @@ function Config() {
   } as any)
 
   useEffect(() => {
-    const configData = localStorage.getItem('configData')
-    configData && setForm(JSON.parse(configData))
+    const userConfig = getLocalStorage(USER_CONFIG_KEY)
+    userConfig && setForm(userConfig)
   }, [])
   const handleSelectChange: SelectProps['onChange'] = (event, data) => {
-    setForm({ ...form, openai: { ...form.openai, mode: data.value } })
+    setForm({ ...form, chatgpt: { ...form.chatgpt, model: data.value } })
   }
   const handleInputChange = (event: { target: any }) => {
     const target = event.target
     let [type, label] = target.id && target.id.split('_')
 
     const value = target.value
-    const curProduct = form[type] || form.openai
+    const curProduct = form[type] || form.chatgpt
     setForm({
       ...form,
       [type]: { ...curProduct, [label]: value },
     })
   }
-  const onSubmit = () => {
-    localStorage.setItem('configData', JSON.stringify(form))
-  }
+  const onSubmit = () => setLocalStorage(USER_CONFIG_KEY, form)
 
   // TODO: each bot with each tab
   return (
@@ -49,10 +49,10 @@ function Config() {
             <Input
               onChange={handleInputChange}
               className="flex-auto"
-              value={form.openai.key}
+              value={form.chatgpt.key}
               type="password"
               placeholder="sk-******"
-              id="openai_key"
+              id="chatgpt_key"
             />
           </div>
           <div className="mb-3 flex items-center">
@@ -60,14 +60,14 @@ function Config() {
             <Input
               onChange={handleInputChange}
               className="flex-auto"
-              value={form.openai.host}
+              value={form.chatgpt.host}
               type="url"
-              id="openai_host"
+              id="chatgpt_host"
             />
           </div>
           <div className="mb-3 flex items-center">
             <Label className="mr-4 flex w-28 justify-end">Model</Label>
-            <Select className="flex-auto" onChange={handleSelectChange} value={form.openai.mode}>
+            <Select className="flex-auto" onChange={handleSelectChange} value={form.chatgpt.model}>
               {CHATGPT_API_MODELS.map((item, index) => (
                 <option key={index} value={item}>
                   {item}
