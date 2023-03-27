@@ -1,4 +1,4 @@
-import { getUserConfig } from '@pages/config/util'
+import { getBotConfig } from '@pages/config/util'
 import { ChatError, ErrorCode } from '@utils/errors'
 import { AbstractBot, MessageParams } from '../abstract_bot'
 import { CHATGPT_SYSTEM_MESSAGE, ConversationMessage } from '@const/chatgpt'
@@ -8,10 +8,11 @@ interface conversitionContext {
 }
 
 export class ChatGPTApiBot extends AbstractBot {
+  private botId: BotId = 'chatgpt'
   private conversitionContext?: conversitionContext
 
   async sendMessage(params: MessageParams) {
-    const { openaiApiKey, openaiApiHost, chatgptApiModel } = await getUserConfig()
+    const { openaiApiKey, openaiApiHost, chatgptApiModel } = await getBotConfig(this.botId)
     if (!openaiApiKey) {
       throw new ChatError('OpenAI API key not set', ErrorCode.API_KEY_NOT_SET)
     }
@@ -77,6 +78,7 @@ export class ChatGPTApiBot extends AbstractBot {
 import { createParser } from 'eventsource-parser'
 import { isEmpty } from '@utils'
 import { streamAsyncIterable } from '@utils/stream'
+import { BotId } from '@bots'
 
 export async function parseStream(resp: Response, onMessage: (message: string) => void) {
   if (!resp.ok) {
