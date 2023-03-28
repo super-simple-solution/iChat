@@ -1,5 +1,5 @@
 import { Label, Input, Button, Divider, Select, SelectProps } from '@fluentui/react-components'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MouseEventHandler } from 'react'
 import { CHATGPT_API_MODELS } from '@const'
 import { getLocalStorage, setLocalStorage } from '@utils/storage'
 import { USER_CONFIG_KEY } from './const'
@@ -11,7 +11,7 @@ const BING_STYLE_OPTIONS = [
   { name: 'Creative', value: BingConversationStyle.Creative },
 ]
 
-function Config() {
+function Config(props: any) {
   const [form, setForm] = useState({
     chatgpt: {
       key: '',
@@ -46,13 +46,17 @@ function Config() {
       [type]: { ...curProduct, [label]: value },
     })
   }
-  const onSubmit = () => setLocalStorage(USER_CONFIG_KEY, form)
+
+  const toSave = () => {
+    props.toCancel()
+    setLocalStorage(USER_CONFIG_KEY, form)
+  }
 
   // TODO: each bot with each tab
   return (
     <>
       <div className="p-4">
-        <form onClick={onSubmit}>
+        <form>
           <Divider appearance="brand" className="mb-4">
             ChatGPT
           </Divider>
@@ -121,8 +125,11 @@ function Config() {
           {/* <Divider appearance="brand" className="mb-4">
             Bard
           </Divider> */}
-          <div className="mt-7">
-            <Button className="float-right" appearance="primary">
+          <div className="flex-xy-center mt-7">
+            <Button appearance="outline" className="!mr-7" onClick={props.toCancel}>
+              Cancel
+            </Button>
+            <Button appearance="primary" className="!bg-[#4f6bed]" onClick={toSave}>
               Save
             </Button>
           </div>

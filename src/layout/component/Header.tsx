@@ -1,12 +1,28 @@
 import { Avatar } from '@fluentui/react-components'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler, useState } from 'react'
 import { WeatherMoon24Regular, WeatherSunny24Regular, Settings24Regular } from '@fluentui/react-icons'
-import { Link } from 'react-router-dom'
+import {
+  Dialog,
+  DialogTrigger,
+  DialogSurface,
+  DialogTitle,
+  DialogBody,
+  DialogActions,
+  DialogContent,
+  Button,
+} from '@fluentui/react-components'
+import Setting from '@pages/config'
 
 export default function Header(props: {
   toggleTheme: MouseEventHandler<HTMLButtonElement> | undefined
   isDarkMode: boolean
 }) {
+  const [showDialog, setShowDialog] = useState(false)
+
+  const handleHideDialog = () => setShowDialog(false)
+  const openDialog = () => setShowDialog(true)
+  const toCancel = () => handleHideDialog()
+
   return (
     <>
       <div>
@@ -18,10 +34,17 @@ export default function Header(props: {
             }}
             {...props}
           />
-          <Link to="config" className="mr-2 cursor-pointer">
+          <div className="mr-2 cursor-pointer" onClick={openDialog}>
             <Settings24Regular />
-          </Link>
+          </div>
 
+          <Dialog open={showDialog} onOpenChange={handleHideDialog}>
+            <DialogSurface>
+              <DialogContent>
+                <Setting toCancel={toCancel} />
+              </DialogContent>
+            </DialogSurface>
+          </Dialog>
           {/* <div>
             <span onClick={props.toggleTheme} className="cursor-pointer">
               {props.isDarkMode ? <WeatherSunny24Regular /> : <WeatherMoon24Regular />}
