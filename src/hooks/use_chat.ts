@@ -22,7 +22,7 @@ export function useChat(botId: BotId) {
     [setChatState],
   )
 
-  const sendMessage = useCallback(
+  const toSendMessage = useCallback(
     async (input: string) => {
       const botMessageId = uuid()
       setChatState((draft) => {
@@ -36,7 +36,7 @@ export function useChat(botId: BotId) {
         draft.generatingMessageId = botMessageId
         draft.abortController = abortController
       })
-      await chatState.bot.sendMessage({
+      await chatState.bot.toSendMessage({
         prompt: input,
         signal: abortController.signal,
         onEvent(event) {
@@ -99,12 +99,12 @@ export function useChat(botId: BotId) {
     () => ({
       botId,
       messages: chatState.messages,
-      sendMessage,
+      toSendMessage,
       resetConversation,
       generating: !!chatState.generatingMessageId,
       stopGenerating,
     }),
-    [botId, chatState.generatingMessageId, chatState.messages, resetConversation, sendMessage, stopGenerating],
+    [botId, chatState.generatingMessageId, chatState.messages, resetConversation, toSendMessage, stopGenerating],
   )
 
   return chat

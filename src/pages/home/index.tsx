@@ -26,7 +26,8 @@ function Home() {
   const botId = searchParams.get('bot_id') || 'chatgpt'
   const chat = useChat(botId as BotId)
   const onSubmit = useCallback(async () => {
-    chat.sendMessage(value as string)
+    chat.toSendMessage(value as string)
+    setValue('')
   }, [value])
 
   const onKeyDown: KeyboardEventHandler<HTMLInputElement> = useCallback(

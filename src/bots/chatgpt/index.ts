@@ -12,15 +12,10 @@ export class ChatGPTApiBot extends AbstractBot {
   private botId: BotId = 'chatgpt'
   private conversitionContext?: conversitionContext
 
-  constructor() {
-    super()
-  }
-
   async sendMessage(params: MessageParams) {
     const { key: openaiApiKey, host: openaiApiHost, model: chatgptApiModel } = getBotConfig(this.botId)
-    console.log(openaiApiKey, 'openaiApiKey')
-    if (!openaiApiKey && openaiApiHost !== DEFAULT_CONFIG.chatgpt.host) {
-      throw new ChatError('OpenAI API key not set', ErrorCode.API_KEY_NOT_SET)
+    if (!openaiApiKey && openaiApiHost === DEFAULT_CONFIG.chatgpt.host) {
+      throw new ChatError('Please set your OpenAI API key or set your API host', ErrorCode.API_KEY_NOT_SET)
     }
     if (!this.conversitionContext) {
       this.conversitionContext = {

@@ -25,14 +25,14 @@ export const productList: Product[] = [
     name: 'chatgpt',
     selected: true,
   },
-  {
-    icon: 'bing',
-    name: 'bing',
-    selected: false,
-  },
-  {
-    icon: 'bard',
-    name: 'bard',
-    selected: false,
-  },
+  // {
+  //   icon: 'bing',
+  //   name: 'bing',
+  //   selected: false,
+  // },
+  // {
+  //   icon: 'bard',
+  //   name: 'bard',
+  //   selected: false,
+  // },
 ]
