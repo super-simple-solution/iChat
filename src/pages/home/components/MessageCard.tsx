@@ -38,14 +38,14 @@ const ChatMessageCard: FC<Props> = ({ botId, message, className }) => {
     <div
       className={cx('group flex w-full gap-3', message.author === 'user' ? 'flex-row-reverse' : 'flex-row', className)}
     >
-      <div className="flex items-center">
+      <div className={`flex ${message.author === 'user' ? 'items-center' : 'items-start'}`}>
         <Image
           className="w-8"
           src={`/src/assets/svg/${message.author === 'user' ? 'avatar' : botIcon}.svg`}
           alt={botId}
         />
       </div>
-      <div className="flex w-11/12 max-w-fit  flex-col items-start gap-2">
+      <div className="flex w-11/12 max-w-fit flex-col items-start gap-2 pb-2">
         <MessageBubble color={message.author === 'user' ? 'primary' : 'flat'}>
           {message.text ? (
             <Markdown>{message.text}</Markdown>

@@ -11,7 +11,7 @@ const MessageBubble: FC<PropsWithChildren<Props>> = (props) => {
     <div
       className={cx(
         'px-4 py-2 text-neutral-500',
-        props.color === 'primary' ? '' : 'shadow-light rounded-lg',
+        props.color === 'primary' ? '' : 'shadow-light rounded-lg bg-white',
         props.className,
       )}
     >

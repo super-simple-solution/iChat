@@ -4,9 +4,13 @@
   @apply border-b border-neutral-300;
 }
 .nav, .main-content {
-  background-color: rgba(245, 244, 249, .66);
+  background-color: rgba(var(--color-neutral-100-rgb), 0.66);
+  border-left: 1px solid rgba(var(--color-neutral-400-rgb), 0.4);
   .type-item {
-    border-top: 1px solid var(--color-neutral-400);
+    border-top: 1px solid rgba(var(--color-neutral-400-rgb), 0.4);
+    &:first-child {
+      border-top-color: transparent;
+    }
     &:hover {
       @apply rounded-md;
       box-shadow: var(--shadow-light);

@@ -10,7 +10,7 @@ export default function Header(props: {
   return (
     <>
       <div>
-        <div className="header flex h-full flex-col items-center justify-between px-6 py-8 text-lg">
+        <div className="header flex h-full flex-col items-center justify-between p-5 text-lg">
           <Avatar
             aria-label="Guest"
             image={{

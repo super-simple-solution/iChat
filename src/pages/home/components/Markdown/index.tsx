@@ -26,10 +26,10 @@ function CustomCode(props: { children: ReactNode; className?: string }) {
   }, [copied])
 
   return (
-    <div className="flex flex-col">
-      <div className="bg-[#e6e7e8] p-2 text-xs">
+    <div className="relative flex flex-col">
+      <div className="absolute right-0 p-2 text-xs">
         <CopyToClipboard text={code} onCopy={() => setCopied(true)}>
-          <div className="ml-1 flex w-fit cursor-pointer flex-row items-center gap-2">
+          <div className="flex w-fit cursor-pointer flex-row items-center gap-2">
             <BsClipboard />
             <span>{copied ? 'copied' : 'copy code'}</span>
           </div>
