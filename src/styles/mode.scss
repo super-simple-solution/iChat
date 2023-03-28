@@ -49,15 +49,16 @@
   .header {
     @apply border-b border-neutral-800;
   }
-  .nav, .message-content {
+  .nav, .message-content, .main-content {
     @apply bg-black;
     .type-item {
       &:hover {
-        background-color: var(--color-neutral-500);
+        background-color: var(--color-neutral-700);
       }
     }
     .select {
-      background-color: var(--color-neutral-300);
+      box-shadow: var(--color-neutral-800);
+      background-color: var(--color-neutral-800);
     }
   }
 
