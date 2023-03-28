@@ -19,7 +19,7 @@ function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => v
         <div className="type-list p-2">
           {productList.map((item, index) => (
             <div
-              className={`type-item ${item.selected ? 'select' : ''}`}
+              className={`type-item px-2 py-4 ${item.selected ? 'select' : ''}`}
               key={index}
               onClick={() => handleChange(item)}
             >

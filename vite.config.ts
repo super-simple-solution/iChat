@@ -9,7 +9,8 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const mobile = process.env.TAURI_PLATFORM === 'android' || process.env.TAURI_PLATFORM === 'ios'
 
-const pathUrl = 'https://api.openai.com'
+// const pathUrl = 'https://api.openai.com'
+const pathUrl = 'https://openai.ssss.life'
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   server: {

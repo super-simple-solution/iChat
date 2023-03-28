@@ -16,7 +16,14 @@ const MessageList: FC<Props> = (props) => {
     <ScrollToBottom className="h-full overflow-auto">
       <div className={cx('flex h-full flex-col gap-3', props.className)}>
         {props.messages.map((message, index) => {
-          return <MessageCard key={message.id} message={message} className={index === 0 ? 'mt-5' : undefined} />
+          return (
+            <MessageCard
+              botId={props.botId}
+              key={message.id}
+              message={message}
+              className={index === 0 ? 'mt-5' : undefined}
+            />
+          )
         })}
       </div>
     </ScrollToBottom>

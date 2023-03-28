@@ -4,9 +4,7 @@
     // @apply bg-neutral-700 bg-opacity-80;
   }
   .type-item {
-    @apply flex justify-between items-center text-lg   cursor-pointer  rounded-xl;
-    padding: 10px 10px 10px 5px;
-    margin-bottom: 10px;
+    @apply flex justify-between items-center text-lg  cursor-pointer;
   }
   .item-text {
     @apply truncate;

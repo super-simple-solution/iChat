@@ -11,7 +11,13 @@ export default function Header(props: {
     <>
       <div>
         <div className="header flex h-full flex-col items-center justify-between px-6 py-8 text-lg">
-          <Avatar aria-label="Guest" {...props} />
+          <Avatar
+            aria-label="Guest"
+            image={{
+              src: 'https://fabricweb.azureedge.net/fabric-website/assets/images/avatar/KatriAthokas.jpg',
+            }}
+            {...props}
+          />
           <Link to="config" className="mr-2 cursor-pointer">
             <Settings24Regular />
           </Link>

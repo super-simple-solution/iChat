@@ -1,6 +1,7 @@
 import { zip } from 'lodash-es'
 import { BotId } from '@bots'
 import { ChatMessageModel } from '@types'
+import { getLocalStorage, setLocalStorage } from '@utils/storage'
 
 /**
  * conversations:$botId => Conversation[]
@@ -16,29 +17,27 @@ type ConversationWithMessages = Conversation & { messages: ChatMessageModel[] }
 
 function loadHistoryConversations(botId: BotId): Conversation[] {
   const key = `conversations:${botId}`
-  const value = localStorage.getItem(key)
-  return value && value[0] === '[' ? JSON.parse(value) : []
+  return getLocalStorage(key) || []
 }
 
 function loadConversationMessages(botId: BotId, cid: string): ChatMessageModel[] {
   const key = `conversation:${botId}:${cid}:messages`
-  const value = localStorage.getItem(key)
-  return value && value[0] === '[' ? JSON.parse(value) : []
+  return getLocalStorage(key) || []
 }
 
-export async function setConversationMessages(botId: BotId, cid: string, messages: ChatMessageModel[]) {
-  const conversations = await loadHistoryConversations(botId)
+export function setConversationMessages(botId: BotId, cid: string, messages: ChatMessageModel[]) {
+  const conversations = loadHistoryConversations(botId)
   if (!conversations.some((c) => c.id === cid)) {
     conversations.unshift({ id: cid, createdAt: Date.now() })
-    localStorage.setItem(`conversations:${botId}`, JSON.stringify(conversations))
+    setLocalStorage(`conversations:${botId}`, conversations)
   }
   const key = `conversation:${botId}:${cid}:messages`
-  localStorage.setItem(key, JSON.stringify(messages))
+  setLocalStorage(key, messages)
 }
 
-export async function loadHistoryMessages(botId: BotId): Promise<ConversationWithMessages[]> {
-  const conversations = await loadHistoryConversations(botId)
-  const messagesList = await Promise.all(conversations.map((c) => loadConversationMessages(botId, c.id)))
+export function loadHistoryMessages(botId: BotId): ConversationWithMessages[] {
+  const conversations = loadHistoryConversations(botId)
+  const messagesList = conversations.map((c) => loadConversationMessages(botId, c.id))
   return zip(conversations, messagesList).map(([c, messages]) => ({
     id: c!.id,
     createdAt: c!.createdAt,

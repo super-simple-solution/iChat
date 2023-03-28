@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import { FC, memo, useEffect, useMemo, useState } from 'react'
+import { Image } from '@fluentui/react-components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { IoCheckmarkSharp, IoCopyOutline } from 'react-icons/io5'
 import { BeatLoader } from 'react-spinners'
@@ -11,10 +12,12 @@ import MessageBubble from './MessageBubble'
 interface Props {
   message: ChatMessageModel
   className?: string
+  botId: string
 }
 
-const ChatMessageCard: FC<Props> = ({ message, className }) => {
+const ChatMessageCard: FC<Props> = ({ botId, message, className }) => {
   const [copied, setCopied] = useState(false)
+  const botIcon = `${botId}-logo`
 
   const copyText = useMemo(() => {
     if (message.text) {
@@ -35,6 +38,13 @@ const ChatMessageCard: FC<Props> = ({ message, className }) => {
     <div
       className={cx('group flex w-full gap-3', message.author === 'user' ? 'flex-row-reverse' : 'flex-row', className)}
     >
+      <div className="flex items-center">
+        <Image
+          className="w-8"
+          src={`/src/assets/svg/${message.author === 'user' ? 'avatar' : botIcon}.svg`}
+          alt={botId}
+        />
+      </div>
       <div className="flex w-11/12 max-w-fit  flex-col items-start gap-2">
         <MessageBubble color={message.author === 'user' ? 'primary' : 'flat'}>
           {message.text ? (

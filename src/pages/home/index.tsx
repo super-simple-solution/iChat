@@ -11,7 +11,7 @@ import MessageList from './components/MessageList'
 function Home() {
   const [value, setValue] = useState('')
   const [searchParams] = useSearchParams()
-  const botId = searchParams.get('bot_id')
+  const botId = searchParams.get('bot_id') || 'chatgpt'
   const chat = useChat(botId as BotId)
   const onSubmit = useCallback(async () => {
     chat.sendMessage(value as string)
@@ -37,12 +37,12 @@ function Home() {
         </div>
         <div className="my-1 flex items-center justify-between p-2">
           <Input
-            appearance="filled-lighter"
             size="large"
             contentBefore={<Search24Filled className="cursor-pointer" />}
             contentAfter={<Send24Regular className="cursor-pointer" onClick={() => onSubmit()} />}
             value={value}
             onKeyDown={onKeyDown}
+            appearance="filled-lighter"
             className="shadow-deep flex-auto"
             autoComplete="off"
             onChange={(event) => setValue(event.target.value)}
