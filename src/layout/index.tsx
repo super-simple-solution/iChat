@@ -1,13 +1,20 @@
 import { Outlet } from 'react-router-dom'
 import Header from './component/Header'
 import Nav from './component/Nav'
+import { getLocalStorage, setLocalStorage } from '@utils/storage'
 import { FluentProvider, webDarkTheme, webLightTheme } from '@fluentui/react-components'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { productList } from '@const/index'
 
 export default function AppLayout() {
   const [isDarkMode, setIsDarkMode] = useState(false)
-  const toggleTheme = () => setIsDarkMode(!isDarkMode)
+  useEffect(() => {
+    setIsDarkMode(getLocalStorage('isDarkMode'))
+  }, [])
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode)
+    setLocalStorage('isDarkMode', !isDarkMode)
+  }
 
   const [curProduct, setProduct] = useState('chatgpt')
   const handleSelectProduct = (value: string) => {

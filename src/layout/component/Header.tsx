@@ -1,16 +1,7 @@
-import { Avatar } from '@fluentui/react-components'
 import { MouseEventHandler, useState } from 'react'
 import { WeatherMoon24Regular, WeatherSunny24Regular, Settings24Regular } from '@fluentui/react-icons'
-import {
-  Dialog,
-  DialogTrigger,
-  DialogSurface,
-  DialogTitle,
-  DialogBody,
-  DialogActions,
-  DialogContent,
-  Button,
-} from '@fluentui/react-components'
+import { Avatar, Dialog, DialogSurface, DialogContent } from '@fluentui/react-components'
+import { Button, Menu, MenuTrigger, MenuList, MenuItem, MenuPopover } from '@fluentui/react-components'
 import Setting from '@pages/config'
 
 export default function Header(props: {
@@ -34,8 +25,13 @@ export default function Header(props: {
             }}
             {...props}
           />
-          <div className="mr-2 cursor-pointer" onClick={openDialog}>
-            <Settings24Regular />
+          <div>
+            <span onClick={props.toggleTheme} className="cursor-pointer">
+              {props.isDarkMode ? <WeatherSunny24Regular /> : <WeatherMoon24Regular />}
+            </span>
+            <div className="mt-2 cursor-pointer" onClick={openDialog}>
+              <Settings24Regular />
+            </div>
           </div>
 
           <Dialog open={showDialog} onOpenChange={handleHideDialog}>
@@ -45,11 +41,6 @@ export default function Header(props: {
               </DialogContent>
             </DialogSurface>
           </Dialog>
-          {/* <div>
-            <span onClick={props.toggleTheme} className="cursor-pointer">
-              {props.isDarkMode ? <WeatherSunny24Regular /> : <WeatherMoon24Regular />}
-            </span>
-          </div> */}
         </div>
       </div>
     </>
