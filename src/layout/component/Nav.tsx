@@ -15,8 +15,8 @@ function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => v
   }
   return (
     <>
-      <div className="nav p-3">
-        <div className="type-list">
+      <div className="nav rounded-l-lg p-4">
+        <div className="type-list p-2">
           {productList.map((item, index) => (
             <div
               className={`type-item ${item.selected ? 'select' : ''}`}

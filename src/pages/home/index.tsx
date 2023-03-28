@@ -29,24 +29,25 @@ function Home() {
 
   return (
     <>
-      <div className="flex h-full flex-col justify-between border-l-[1px] border-neutral-400">
+      <div className="flex h-full flex-col justify-between border-l-[1px]">
         <div className="message-content h-full w-full overflow-hidden ">
-          <div className="h-[calc(100vh_-_80px)] overflow-hidden overflow-y-scroll  p-3 pb-12">
+          <div className="h-[calc(100vh_-_40px)] overflow-hidden overflow-y-scroll  p-3 pb-12">
             <MessageList botId={chat.botId} messages={chat.messages} />
           </div>
         </div>
         <div className="my-1 flex items-center justify-between p-2">
           <Input
+            appearance="filled-lighter"
+            size="large"
             contentBefore={<Search24Filled className="cursor-pointer" />}
+            contentAfter={<Send24Regular className="cursor-pointer" onClick={() => onSubmit()} />}
             value={value}
             onKeyDown={onKeyDown}
-            className="flex-auto"
+            className="shadow-deep flex-auto"
             autoComplete="off"
             onChange={(event) => setValue(event.target.value)}
-            appearance="underline"
             placeholder="Ask me anything..."
           />
-          <Send24Regular className="cursor-pointer" onClick={() => onSubmit()} />
         </div>
       </div>
     </>

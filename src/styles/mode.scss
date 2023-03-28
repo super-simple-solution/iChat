@@ -3,14 +3,17 @@
 .header {
   @apply border-b border-neutral-300;
 }
-.nav, .message-content {
-  @apply bg-neutral;
+.nav, .main-content {
+  background-color: rgba(245, 244, 249, .66);
   .type-item {
+    @apply rounded-md;
     &:hover {
-      @apply bg-neutral-200
+      box-shadow: var(--shadow-light);
+      @apply bg-white;
     }
   }
   .select {
+    box-shadow: var(--shadow-light);
     @apply bg-white;
   }
 }

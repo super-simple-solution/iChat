@@ -11,3 +11,20 @@ body {
     Arial, sans-serif;
     overflow-x: hidden ;
 }
+.main-wrapper {
+  background: url(/src/assets/bg.png) 20px bottom no-repeat;
+}
+.main-container {
+  padding: 20px 20px 20px 0;
+  overflow: hidden;
+}
+.main-content {
+  overflow: hidden;
+}
+.shadow-light {
+  box-shadow: var(--shadow-light);
+}
+
+.shadow-deep {
+  box-shadow: var(--shadow-deep);
+}
