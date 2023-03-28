@@ -17,10 +17,10 @@ function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => v
   return (
     <>
       <div className="nav rounded-l-lg p-4">
-        <div className="type-list p-2">
+        <div className="type-list ">
           {productList.map((item, index) => (
             <div
-              className={`type-item py-4 ${item.selected ? 'select' : ''}`}
+              className={`type-item py-3 ${item.selected ? 'select' : ''}`}
               key={index}
               onClick={() => handleChange(item)}
             >
@@ -28,6 +28,7 @@ function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => v
                 <Avatar
                   aria-label={item.icon}
                   className="mr-3"
+                  active={item.selected ? 'active' : 'unset'}
                   image={{
                     src: `/src/assets/svg/${item.icon}-logo.svg`,
                   }}

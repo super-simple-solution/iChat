@@ -1,8 +1,8 @@
 import { Label, Input, Button, Divider, Select, SelectProps } from '@fluentui/react-components'
-import { useState, useEffect, MouseEventHandler } from 'react'
+import { useState, useEffect } from 'react'
 import { CHATGPT_API_MODELS } from '@const'
 import { getLocalStorage, setLocalStorage } from '@utils/storage'
-import { USER_CONFIG_KEY } from './const'
+import { USER_CONFIG_KEY, DEFAULT_CONFIG } from './const'
 import { BingConversationStyle } from '@const'
 
 const BING_STYLE_OPTIONS = [
@@ -12,16 +12,7 @@ const BING_STYLE_OPTIONS = [
 ]
 
 function Config(props: any) {
-  const [form, setForm] = useState({
-    chatgpt: {
-      key: '',
-      host: 'https://api.openai.com',
-      model: CHATGPT_API_MODELS[0],
-    },
-    bing: {
-      style: BingConversationStyle.Balanced,
-    },
-  } as any)
+  const [form, setForm] = useState(DEFAULT_CONFIG as any)
 
   useEffect(() => {
     const userConfig = getLocalStorage(USER_CONFIG_KEY)

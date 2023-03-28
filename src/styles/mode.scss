@@ -7,7 +7,7 @@
   background-color: rgba(var(--color-neutral-100-rgb), 0.66);
   border-left: 1px solid rgba(var(--color-neutral-400-rgb), 0.4);
   .type-item {
-    border-top: 1px solid rgba(var(--color-neutral-400-rgb), 0.4);
+    margin-bottom: 5px;
     &:first-child {
       border-top-color: transparent;
     }

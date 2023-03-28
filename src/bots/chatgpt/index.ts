@@ -1,4 +1,5 @@
 import { getBotConfig } from '@pages/config/util'
+import { DEFAULT_CONFIG } from '@pages/config/const'
 import { ChatError, ErrorCode } from '@utils/errors'
 import { AbstractBot, MessageParams } from '../abstract_bot'
 import { CHATGPT_SYSTEM_MESSAGE, ConversationMessage } from '@const/chatgpt'
@@ -14,7 +15,7 @@ export class ChatGPTApiBot extends AbstractBot {
   async sendMessage(params: MessageParams) {
     const { key: openaiApiKey, host: openaiApiHost, model: chatgptApiModel } = getBotConfig(this.botId)
     console.log(openaiApiKey, 'openaiApiKey')
-    if (!openaiApiKey && !openaiApiHost) {
+    if (!openaiApiKey && !(openaiApiHost !== DEFAULT_CONFIG.chatgpt.host)) {
       throw new ChatError('OpenAI API key not set', ErrorCode.API_KEY_NOT_SET)
     }
     if (!this.conversitionContext) {
