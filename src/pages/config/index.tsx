@@ -93,7 +93,7 @@ function Config(props: any) {
               ))}
             </Select>
           </div>
-          <Divider appearance="brand" className="mb-4">
+          {/* <Divider appearance="brand" className="mb-4">
             Bing
           </Divider>
           <div className="mb-3 flex items-center">
@@ -112,7 +112,7 @@ function Config(props: any) {
                 </option>
               ))}
             </Select>
-          </div>
+          </div> */}
           {/* <Divider appearance="brand" className="mb-4">
             Bard
           </Divider> */}

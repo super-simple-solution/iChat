@@ -21,7 +21,7 @@ export default function Header(props: {
           <Avatar
             aria-label="Guest"
             image={{
-              src: 'https://fabricweb.azureedge.net/fabric-website/assets/images/avatar/KatriAthokas.jpg',
+              src: '/src/assets/svg/avatar.svg',
             }}
             {...props}
           />

@@ -29,7 +29,7 @@ export default function AppLayout() {
         >
           <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
           <div className="main-container flex flex-auto">
-            <Nav productList={productList} selectProduct={handleSelectProduct}></Nav>
+            {/* <Nav productList={productList} selectProduct={handleSelectProduct}></Nav> */}
             <div className="main-content w-full rounded-r-lg">
               <Outlet />
             </div>

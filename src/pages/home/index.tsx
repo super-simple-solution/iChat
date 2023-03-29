@@ -1,6 +1,6 @@
 import { useCallback, KeyboardEventHandler, FC, useRef, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Button, ButtonProps, Textarea } from '@fluentui/react-components'
+import { Button, ButtonProps, Textarea, Spinner } from '@fluentui/react-components'
 
 import { Send24Regular, Mic24Regular } from '@fluentui/react-icons'
 import { useState } from 'react'
@@ -28,7 +28,9 @@ function Home() {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const botId = searchParams.get('bot_id') || 'chatgpt'
   const chat = useChat(botId as BotId)
+
   const onSubmit = useCallback(async () => {
+    if (!value.trim()) return
     chat.toSendMessage(value as string)
     setValue('')
   }, [value])
@@ -36,6 +38,11 @@ function Home() {
   useEffect(() => {
     textareaRef.current && textareaRef.current.focus()
   }, [])
+
+  const [generating, setGenerating] = useState(false)
+  useEffect(() => {
+    setGenerating(chat.generating)
+  }, [chat])
 
   const onChange = (value: string) => {
     const inputValue = value
@@ -86,10 +93,16 @@ function Home() {
               {wordsLen}/{maxWords}
             </span>
           </div>
-          <span className="ml-2">
+          <div className="relative ml-2 flex h-full items-center justify-end ">
+            {generating && (
+              <div className="flex-xy-center absolute top-0 left-0 z-10 h-full w-full rounded-2xl bg-white bg-opacity-70">
+                <Spinner size="extra-small"></Spinner>
+              </div>
+            )}
+
             <MicButton className="cursor-pointer" aria-label="Enter by voice" onClick={() => stt()} />
             <Send24Regular className="ml-2 cursor-pointer" onClick={() => onSubmit()} />
-          </span>
+          </div>
         </div>
         <div className="pl-3 pb-2 text-neutral-400">[Enter] send, [Shift+Enter] line break</div>
       </div>
