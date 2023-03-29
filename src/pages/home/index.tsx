@@ -1,4 +1,4 @@
-import { useCallback, KeyboardEventHandler, FC, SetStateAction } from 'react'
+import { useCallback, KeyboardEventHandler, FC, SetStateAction, useRef, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Button, ButtonProps, Textarea } from '@fluentui/react-components'
 
@@ -25,12 +25,17 @@ function Home() {
   const [value, setValue] = useState('')
   const [searchParams] = useSearchParams()
   const [wordsLen, setWordsLen] = useState(0)
+  const textareaRef = useRef<HTMLTextAreaElement>()
   const botId = searchParams.get('bot_id') || 'chatgpt'
   const chat = useChat(botId as BotId)
   const onSubmit = useCallback(async () => {
     chat.toSendMessage(value as string)
     setValue('')
   }, [value])
+
+  useEffect(() => {
+    textareaRef.current && textareaRef.current.focus()
+  }, [])
 
   const onChange = (value: string) => {
     const inputValue = value
@@ -61,13 +66,14 @@ function Home() {
     <>
       <div className="flex h-full flex-col justify-between">
         <div className="message-content h-full w-full overflow-hidden ">
-          <div className="h-[calc(100vh_-_40px)] overflow-hidden overflow-y-scroll p-3 pb-16">
+          <div className="h-[calc(100vh_-_52px)] overflow-hidden overflow-y-scroll p-3 pb-16">
             <MessageList botId={chat.botId} messages={chat.messages} />
           </div>
         </div>
         <div className="my-1 flex items-center justify-between p-2 pb-1">
           <div className="relative flex-auto">
             <Textarea
+              ref={textareaRef}
               value={value}
               onKeyDown={onKeyDown}
               appearance="filled-lighter"
