@@ -1,8 +1,8 @@
-import { useCallback, KeyboardEventHandler, FC, SetStateAction, useRef, useEffect } from 'react'
+import { useCallback, KeyboardEventHandler, FC, useRef, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Button, ButtonProps, Textarea } from '@fluentui/react-components'
 
-import { Search24Filled, Send24Regular, Mic24Regular } from '@fluentui/react-icons'
+import { Send24Regular, Mic24Regular } from '@fluentui/react-icons'
 import { useState } from 'react'
 import { BotId } from '@bots'
 import { useChat } from '@hooks/use_chat'
@@ -25,7 +25,7 @@ function Home() {
   const [value, setValue] = useState('')
   const [searchParams] = useSearchParams()
   const [wordsLen, setWordsLen] = useState(0)
-  const textareaRef = useRef<HTMLTextAreaElement>()
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const botId = searchParams.get('bot_id') || 'chatgpt'
   const chat = useChat(botId as BotId)
   const onSubmit = useCallback(async () => {
