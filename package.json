@@ -7,7 +7,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "tauri": "tauri",
-    "build": "tauri build"
+    "build": "vite build"
   },
   "dependencies": {
     "@fluentui/react-components": "^9.18.5",
