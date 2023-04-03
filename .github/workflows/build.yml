@@ -1,9 +1,13 @@
-name: build and public
+name: build
 
 on:
   push:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
    publish-tauri:
@@ -15,22 +19,22 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install pnpm
-      run: |
-        curl -L https://raw.githubusercontent.com/pnpm/self-installer/master/install.js | node
-        export PATH="$HOME/.pnpm/bin:$PATH"
-
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Build and package app
-      run: pnpm tauri build
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
+     - uses: actions/checkout@v2
+    - name: setup node
+      uses: actions/setup-node@v1
       with:
-        name: Tauri app
-        path: dist
+        node-version: 16
+
+     - name: install Rust stable
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
+
+      - uses: JonasKruckenberg/tauri-build@v1
+        id: tauri_build
