@@ -19,9 +19,7 @@ jobs:
       - name: Install dependencies
         run: pnpm tauri install
       - name: Build Tauri App
-        uses: tauri-actions/tauri-action@v1
+        uses: tauri-app/tauri-action@v0
         with:
           platform: ${{ matrix.os }}
           version: '1.0.0'
-
-
