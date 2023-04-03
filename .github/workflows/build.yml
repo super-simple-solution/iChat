@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 18
       - name: Install pnpm
-        run: sudo apt-get update && sudo apt-get install -y pnpm
+        run: npm install pnpm
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
       - name: install dependencies (ubuntu only)
