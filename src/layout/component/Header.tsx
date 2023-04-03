@@ -21,7 +21,7 @@ export default function Header(props: {
           <Avatar
             aria-label="Guest"
             image={{
-              src: '/src/assets/svg/avatar.svg',
+              src: '/svg/avatar.svg',
             }}
             {...props}
           />

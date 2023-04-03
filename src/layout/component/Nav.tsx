@@ -30,7 +30,7 @@ function Nav(props: { productList: Product[]; selectProduct: (arg0: string) => v
                   className="mr-3"
                   active={item.selected ? 'active' : 'unset'}
                   image={{
-                    src: `/src/assets/svg/${item.icon}-logo.svg`,
+                    src: `/svg/${item.icon}-logo.svg`,
                   }}
                 />
                 <span>{item.icon === 'chatgpt' ? 'ChatGPT' : toPascal(item.icon)}</span>
