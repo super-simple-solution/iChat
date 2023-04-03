@@ -1,4 +1,4 @@
-name: Build
+name: build
 on:
   push:
     branches:
@@ -11,15 +11,17 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - name: Install Nodejs
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "16"
-     - name: Install Nodejs    
-        uses: pnpm/action-setup@v2
+           node-version: "16"
+      - name: Install dependencies
+        run: pnpm tauri install
+      - name: Build Tauri App
+        uses: tauri-actions/tauri-action@v1
         with:
-          version: ^7.25.0
-     - name: Get Dependencies
-        run: pnpm tauri  Install
-      - name: Build
-        run: pnpm tauri build
+          platform: ${{ matrix.os }}
+          version: '1.0.0'
+
+
