@@ -1,8 +1,7 @@
 name: 'publish'
 on:
-   push:
-    branches:
-      - main
+  push:
+    tags: [ v\d+\.\d+\.\d+ ]
 
 jobs:
   publish-tauri:
@@ -32,19 +31,24 @@ jobs:
 
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
-      
+
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
           workspaces: './src-tauri -> target'
+          
+      - name: install dependencies (mac only)
+        if: matrix.platform == 'macos-latest'
+        run: |
+          rustup target add aarch64-apple-darwin
 
       - name: install  dependencies
         run: pnpm install # change this to npm or pnpm depending on which one you use
       
-      - name: Build
-        run: pnpm build
+      # - name: Build
+      #   run: pnpm build
       
-      - uses: tauri-apps/tauri-action@v0
+      - uses: tauri-apps/tauri-action@dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
