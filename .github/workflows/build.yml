@@ -1,9 +1,7 @@
 name: 'publish'
 on:
-   push:
-    branches:
-      - main
-
+  push:
+    tags: [ v\d+\.\d+\.\d+ ]
 
 jobs:
   publish-tauri:
@@ -16,20 +14,40 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 
+
+      - name: Get version
+        id: get_version
+        uses: battila7/get-version-action@v2
+
       - name: setup node
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
       - uses: pnpm/action-setup@v2
         with:
           version: 6.0.2
+
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
+      
+       - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
       - name: install  dependencies
         run: pnpm install # change this to npm or pnpm depending on which one you use
+      
       - name: Build
         run: pnpm build
+      
+      - name: Change Version
+        env:
+          VERSION: "${{ steps.get_version.outputs.version-without-v }}"
+        run: make change-version
+
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
