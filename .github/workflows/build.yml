@@ -1,7 +1,8 @@
 name: 'publish'
 on:
-  push:
-    tags: [ v\d+\.\d+\.\d+ ]
+   push:
+    branches:
+      - main
 
 jobs:
   publish-tauri:
