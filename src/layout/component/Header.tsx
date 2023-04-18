@@ -36,7 +36,7 @@ export default function Header(props: {
 
           <Dialog open={showDialog} onOpenChange={handleHideDialog}>
             <DialogSurface>
-              <DialogContent>
+              <DialogContent style={{ minHeight: '300px' }}>
                 <Setting toCancel={toCancel} />
               </DialogContent>
             </DialogSurface>

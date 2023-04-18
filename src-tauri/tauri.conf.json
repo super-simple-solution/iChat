@@ -21,15 +21,15 @@
         "all": true
       },
       "window": {
-        "all": false,
-        "close": true,
-        "hide": true,
-        "show": true,
-        "maximize": true,
-        "minimize": true,
-        "unmaximize": true,
-        "unminimize": true,
-        "startDragging": true
+        "all": true
+      },
+      "dialog": {
+          "all": true, 
+          "open": true, 
+          "save": true 
+      },
+      "os": {
+          "all": true
       }
     },
     "bundle": {
